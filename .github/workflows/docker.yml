@@ -67,4 +67,4 @@ jobs:
           context: "."
           file: "Dockerfile"
           tags: |
-            toluclassics/transformers_notebook/huggingface_jupyter:${{steps.getrefs.outputs.sha12}}, toluclassics/transformers_notebook/huggingface_jupyter:latest
+            toluclassics/transformers_notebook:${{steps.getrefs.outputs.sha12}}, toluclassics/transformers_notebook:latest

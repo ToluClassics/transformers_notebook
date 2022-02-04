@@ -1,0 +1,13 @@
+version: "3.8"
+services:
+  transformers_notebook:
+    build: .
+    ports:
+      - 10000:8888
+    volumes:
+      - ./test_notebooks:/home/jovyan/work
+    environment:
+      GRANT_SUDO: "yes"
+    # enable sudo permissions
+    user: "root"
+    restart: always
