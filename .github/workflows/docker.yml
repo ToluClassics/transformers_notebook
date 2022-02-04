@@ -51,7 +51,6 @@ jobs:
         with:
           driver: docker # to be able to test the image locally
 
-
       - name: Run tests
         run: python -m pytest tests
 
