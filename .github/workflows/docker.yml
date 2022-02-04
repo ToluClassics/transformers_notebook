@@ -8,7 +8,6 @@ on:
       - "*.md"
   push:
     branches:
-      - master
       - main
     paths-ignore:
       - "*.md"
@@ -26,6 +25,15 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: 3.x
+      
+      - name: Build # Build only to be able to run tests
+        uses: docker/build-push-action@v2
+        with:
+          context: "."
+          file: "Dockerfile"
+          tags: |
+            toluclassics/transformers_notebook/huggingface_jupyter:latest
+          push: false
 
       - name: Install Dev Dependencies
         run: |
@@ -43,14 +51,6 @@ jobs:
         with:
           driver: docker # to be able to test the image locally
 
-      - name: Build # Build only to be able to run tests
-        uses: docker/build-push-action@v2
-        with:
-          context: "."
-          file: "Dockerfile"
-          tags: |
-            toluclassics/transformers_notebook/huggingface_jupyter:latest
-          push: false
 
       - name: Run tests
         run: python -m pytest tests
